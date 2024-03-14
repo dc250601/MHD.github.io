@@ -1,7 +1,115 @@
-<!DOCTYPE HTML>
-<html>
-	<body>
-		<h1>Helloo</h1>
-		<p>Test</p>
-	</body>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MHD Project - Diffusion Equations</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .banner {
+            background-image: url("https://en.wikipedia.org/wiki/Magnetohydrodynamics"); /* Replace with desired image */
+            background-size: cover;
+            background-position: center;
+            padding: 50px;
+            color: white;
+            text-align: center;
+        }
+
+        .banner h1 {
+            font-size: 3em;
+        }
+
+        .content {
+            padding: 50px;
+        }
+
+        .content h2 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .content p {
+            line-height: 1.5;
+        }
+
+        .image {
+            display: block;
+            margin: 0 auto;
+            width: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="banner">
+        <h1>MHD Project: Diffusion Equations</h1>
+    </header>
+
+    <main class="content">
+        <h2>Understanding Diffusion in MHD</h2>
+        <p>
+            Diffusion equations play a crucial role in describing the behavior of various physical quantities in magnetohydrodynamics (MHD). 
+            These equations essentially depict the process by which particles or properties spread out over time from regions of high concentration to 
+            regions of low concentration. 
+        </p>
+        <p>
+            In MHD, several quantities undergo diffusion, including:
+        </p>
+        <ul>
+            <li>**Magnetic field:** The magnetic field can diffuse through a conductor due to the random motion of charged particles. 
+                This phenomenon is characterized by magnetic diffusivity. 
+            </li>
+            <li>**Momentum:** The momentum of a fluid can also diffuse due to viscosity, which arises from the interaction between different fluid layers. 
+                This diffusion is described by the viscosity coefficient.
+            </li>
+            <li>**Heat:** Heat transfer in MHD can occur through both conduction and convection. Heat diffusion is represented by the thermal diffusivity.</li>
+        </ul>
+
+        <figure class="image">
+            <img src="https://learnopencv.com/image-generation-using-diffusion-models/" alt="Diffusion process"> <figcaption>Visual representation of diffusion.</figcaption>
+        </figure>
+
+        <h2>Mathematical Formulation</h2>
+        <p>
+            The general form of a diffusion equation can be expressed as:
+        </p>
+        <div>
+            <pre>dφ/dt = ∇² (D ⋅ ∇φ)</pre>
+        </div>
+        <p>
+            where:
+        </p>
+        <ul>
+            <li>φ (phi) represents the quantity undergoing diffusion (e.g., magnetic field, momentum, temperature).</li>
+            <li>∇ (nabla) is the mathematical operator for divergence and gradient.</li>
+            <li>D is the diffusion coefficient specific to the quantity being diffused.</li>
+        </ul>
+        <p>
+            Solving these diffusion equations in MHD problems helps us understand various phenomena, such as:
+        </p>
+        <ul>
+            <li>Magnetic field penetration into plasmas or conductors.</li>
+            <li>Viscous dissipation of fluid motion.</li>
+            <li>Thermal transport and boundary layer formation.
+        </ul>
+
+        <h2>Further Exploration</h2>
+        <p>
+            By incorporating diffusion equations into MHD simulations, scientists and engineers can gain valuable insights into the behavior of 
+            plasmas in various applications, including:
+        </p>
+        <ul>
+            <li>Controlled nuclear fusion research.</li>
+            <li>Astrophysical studies of solar winds and stellar dynamics.</li>
+            <li>Design of MHD generators and other plasma-based technologies.
+        </ul>
+    </main>
+</body>
+
 </html>
