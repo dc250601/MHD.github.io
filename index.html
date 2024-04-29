@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Math Equations</title>
+    <title>Magnetohydrodynamics</title>
     <!-- Include MathJax script -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </head>
@@ -141,6 +141,7 @@
             <img src="./T1R11.png" alt="Image 1" width="600" height="600">
             <img src="./T1R12.png" alt="Image 1" width="600" height="600">
           </div>
+          </br></br>
           <div align = center>
           <img src="./T1R21.png" alt="Image 1" width="600" height="600">
           <img src="./T1R22.png" alt="Image 1" width="600" height="600">
@@ -149,7 +150,7 @@
         <p>The solution notebook can be found <a href="https://github.com/dc250601/MHD.github.io/blob/main/Solution.ipynb">HERE</a></p>
 
         <h2> Task 2</h2>
-        <p><strong>CASE1<strong></p>
+        <p><strong>CASE1</strong></p>
         <div align = center>
         <img src="./R2/T2R11.png" alt="Image 1" width="600" height="600">
         <img src="./R2/T2R12.png" alt="Image 1" width="600" height="600">
@@ -158,7 +159,7 @@
         <img src="./R2/T2R15.png" alt="Image 1" width="1200" height="600">
       </div>
       </br></br>
-      <p><strong>CASE2<strong></p>
+      <p><strong>CASE2</strong></p>
       <div align = center>
       <img src="./R2/T2R21.png" alt="Image 1" width="600" height="600">
       <img src="./R2/T2R22.png" alt="Image 1" width="600" height="600">
@@ -167,7 +168,7 @@
       <img src="./R2/T2R24.png" alt="Image 1" width="1200" height="600">
     </div>
     </br></br>
-    <p><strong>CASE3<strong></p>
+    <p><strong>CASE3</strong></p>
 
     <div align = center>
     <img src="./R2/T2R31.png" alt="Image 1" width="600" height="600">
@@ -202,7 +203,22 @@ as we move towards the right we keep increasing the number of steps.</p>
   <img src="./R3/T3R42.png" alt="Image 1" width="600" height="600">
   <img src="./R3/T3R43.png" alt="Image 1" width="600" height="600">
 </div>
-        </div>
+</div>
+
+
+<h1>Discussion and Conclusion</h1>
+<p>From the above results we can conclude that the simulation was partially successful. The simulation worked well when
+  seed field was close to the solution but took a lot longer to converge as we tried using more and more complex seed fields. The complexity
+  mainly arises due to the presence of multiple modes in the seed field for which the ODE gets confused. A good example of this is the second one,
+  although it was pretty much simple mathematically but since it had multiple modes it took way longer compared to the first case. The 3rd and the four
+  cases were way more extreme due to presence of multiple modes and complexity. The third solution seems to converge but the fourth realy seems to be
+  stagnant. Hence as we increase the complexity of the seed field the number of time step increases which is expected.
+
+  Our analysis is elementary, and has many simplifying assumptions. Our approximation is not valid for elliptical galaxies, limiting ourselves only to spiral galaxies.
+  We have not gone into the non-linear regime, and thus what we observe in this analysis are merely based on this very simple equations. There are other turbulent factors
+  that may be relevant. This analysis can be extended to much more realistic situations, if we choose necessary forms of the different parameters. As a basis, this analysis is elementary,
+  but has scope for further extension.
+</p>
 
 
             <p>The solution for part 2 notebook can be found <a href="https://github.com/dc250601/MHD.github.io/blob/main/Solution2.ipynb">HERE</a></p>
