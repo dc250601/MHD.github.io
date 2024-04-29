@@ -6,6 +6,42 @@
     <title>Magnetohydrodynamics</title>
     <!-- Include MathJax script -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    <style>
+    body {
+        background-image: url('background.jpg');
+        background-size: cover;
+        background-attachment: fixed; /* This makes the background image fixed */
+    }
+
+    .content {
+        padding: 20px;
+        background-color: rgba(0, 0, 0, 0.3); /* Add some opacity to improve readability */
+        margin: 20px auto;
+        /* max-width: 1200px; */
+        border-radius: 10px;
+    }
+
+    .opaque {
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), transparent); /* Background color with opacity */
+    color: white; /* Text color */
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px auto;
+    max-width: 100%; */
+}
+
+
+
+    /* Style your content as needed */
+    h1 {
+        color: 	#4ed4c5;
+    }
+
+    p {
+        color: #86df78;
+    }
+
+</style>
 </head>
 <style>
     p {
@@ -13,7 +49,7 @@
     }
 </style>
 	<body>
-		<div>
+		<div class="content">
       <h1>Abstract</h1>
       <p>Understanding and solving non-linear galactic dynamo equations play a fundamental role in molding our understanding
         of the growth and decay of magnetic field in the ever evolving galactic systems. In this work we tried investigating
@@ -43,7 +79,7 @@
       <p>We consider the derivative along the direction of z as constant as set it as following:</p>
       <p>\[ \frac{\partial^2}{\partial z^2} = \frac{\pi^2}{4h^2} \]</p>
     </div>
-    <div>
+    <div class="content">
       <h1> Numerical Methods</h1>
       <p> For solving the set of equations described in the previous equations we will try to use Runge-Kutta 4th Order (RK4) method.
         This sort of techniques is used when the differential equations are particulary complicated to solve analytically. Moreover RK4 is much more robust
@@ -100,18 +136,17 @@
             </p>
 
             <p>Where:
-            <ul>
-               <li> \( t_n \) is the current time step.</li>
-               <li> \( y_{1,n} \) and \( y_{2,n} \) are the current values of \( y_1 \) and \( y_2 \) at time \( t_n \).</li>
-               <li> \( h \) is the step size.</li>
-               <li> \( k_{1,1} \), \( k_{1,2} \), \( k_{2,1} \), \( k_{2,2} \), \( k_{3,1} \), \( k_{3,2} \), \( k_{4,1} \), and \( k_{4,2} \) are slopes at different stages of the calculation.</li>
+               <p>  \( t_n \) is the current time step.</p>
+               <p> \( y_{1,n} \) and \( y_{2,n} \) are the current values of \( y_1 \) and \( y_2 \) at time \( t_n \).</p>
+               <p> \( h \) is the step size.</p>
+               <p> \( k_{1,1} \), \( k_{1,2} \), \( k_{2,1} \), \( k_{2,2} \), \( k_{3,1} \), \( k_{3,2} \), \( k_{4,1} \), and \( k_{4,2} \) are slopes at different stages of the calculation.</p>
             </ul></p>
 
             <p>These steps are repeated for each time step until we reach the desired end time.</p>
           </div>
 
 
-          <div>
+          <div class="content">
             <h1>Methods derivations and Approximations</h1>
             <p> Taking the no-z approximation considering the glaxay to be a thin disc we can vastly simplify our
               equations. The derivatives of along the z direction can be essentially replaced by a constant ration.
@@ -137,71 +172,74 @@
           <div>
             <h1>Results</h1>
             <h2>Task 1</h2>
-            <div align = center>
-            <img src="./T1R11.png" alt="Image 1" width="600" height="600">
-            <img src="./T1R12.png" alt="Image 1" width="600" height="600">
+            <div align = center class="opaque">
+            <img src="./T1R11.png" alt="Image 1" width=25%>
+            <img src="./T1R12.png" alt="Image 1" width=25%>
           </div>
           </br></br>
-          <div align = center>
-          <img src="./T1R21.png" alt="Image 1" width="600" height="600">
-          <img src="./T1R22.png" alt="Image 1" width="600" height="600">
+          <div align = center class="opaque">
+          <img src="./T1R21.png" alt="Image 1" width=25%>
+          <img src="./T1R22.png" alt="Image 1" width=25%>
         </div>
         <p> Looking at the above plots it is clear that the fields are indeed decaying showing the effect of diffusion equation</p>
         <p>The solution notebook can be found <a href="https://github.com/dc250601/MHD.github.io/blob/main/Solution.ipynb">HERE</a></p>
 
         <h2> Task 2</h2>
         <p><strong>CASE1</strong></p>
-        <div align = center>
-        <img src="./R2/T2R11.png" alt="Image 1" width="600" height="600">
-        <img src="./R2/T2R12.png" alt="Image 1" width="600" height="600">
-        <img src="./R2/T2R13.png" alt="Image 1" width="600" height="600">
-        <img src="./R2/T2R14.png" alt="Image 1" width="600" height="600">
-        <img src="./R2/T2R15.png" alt="Image 1" width="1200" height="600">
+        <div align = center class="opaque">
+        <img src="./R2/T2R11.png" alt="Image 1" width=24%>
+        <img src="./R2/T2R12.png" alt="Image 1" width=24%>
+        <img src="./R2/T2R13.png" alt="Image 1" width=24%>
+        <img src="./R2/T2R14.png" alt="Image 1" width=24%>
+      </br>
+        <img src="./R2/T2R15.png" alt="Image 1" width=50%>
       </div>
       </br></br>
       <p><strong>CASE2</strong></p>
-      <div align = center>
-      <img src="./R2/T2R21.png" alt="Image 1" width="600" height="600">
-      <img src="./R2/T2R22.png" alt="Image 1" width="600" height="600">
-      <img src="./R2/T2R23.png" alt="Image 1" width="600" height="600">
-      <img src="./R2/T2R25.png" alt="Image 1" width="600" height="600">
-      <img src="./R2/T2R24.png" alt="Image 1" width="1200" height="600">
+      <div align = center class="opaque">
+      <img src="./R2/T2R21.png" alt="Image 1" width=24%>
+      <img src="./R2/T2R22.png" alt="Image 1" width=24%>
+      <img src="./R2/T2R23.png" alt="Image 1" width=24%>
+      <img src="./R2/T2R25.png" alt="Image 1" width=24%>
+    </br>
+      <img src="./R2/T2R24.png" alt="Image 1" width=50%>
     </div>
     </br></br>
     <p><strong>CASE3</strong></p>
 
-    <div align = center>
-    <img src="./R2/T2R31.png" alt="Image 1" width="600" height="600">
-    <img src="./R2/T2R32.png" alt="Image 1" width="600" height="600">
-    <img src="./R2/T2R33.png" alt="Image 1" width="600" height="600">
-    <img src="./R2/T2R34.png" alt="Image 1" width="600" height="600">
-    <img src="./R2/T2R35.png" alt="Image 1" width="1200" height="600">
+    <div align = center class="opaque">
+    <img src="./R2/T2R31.png" alt="Image 1" width=24%>
+    <img src="./R2/T2R32.png" alt="Image 1" width=24%>
+    <img src="./R2/T2R33.png" alt="Image 1" width=24%>
+    <img src="./R2/T2R34.png" alt="Image 1" width=24%>
+  </br>
+    <img src="./R2/T2R35.png" alt="Image 1" width=24%>
   </div>
 
 <h2> Task 3</h2>
 <p>For Task 3 we will look at different seed field conditions while slowly increasing their complexity to see how long it
 takes for them to converge to a solution. In each case we begin with a seed field and the left most graph is the initial condition
 as we move towards the right we keep increasing the number of steps.</p>
-<div align = center>
-  <img src="./R3/T3R11.png" alt="Image 1" width="600" height="600">
-  <img src="./R3/T3R12.png" alt="Image 1" width="600" height="600">
+<div align = center class="opaque">
+  <img src="./R3/T3R11.png" alt="Image 1" width=25%>
+  <img src="./R3/T3R12.png" alt="Image 1" width=25%>
+</div>
+</br>
+<div align = center class="opaque">
+  <img src="./R3/T3R21.png" alt="Image 1" width=25%>
+  <img src="./R3/T3R22.png" alt="Image 1" width=25%>
 </div>
 </br></br>
-<div align = center>
-  <img src="./R3/T3R21.png" alt="Image 1" width="600" height="600">
-  <img src="./R3/T3R22.png" alt="Image 1" width="600" height="600">
+<div align = center class="opaque">
+  <img src="./R3/T3R31.jpg" alt="Image 1" width=25%>
+  <img src="./R3/T3R32.png" alt="Image 1" width=25%>
+  <img src="./R3/T3R33.png" alt="Image 1" width=25%>
 </div>
 </br></br>
-<div align = center>
-  <img src="./R3/T3R31.jpg" alt="Image 1" width="600" height="600">
-  <img src="./R3/T3R32.png" alt="Image 1" width="600" height="600">
-  <img src="./R3/T3R33.png" alt="Image 1" width="600" height="600">
-</div>
-</br></br>
-<div align = center>
-  <img src="./R3/T3R41.png" alt="Image 1" width="600" height="600">
-  <img src="./R3/T3R42.png" alt="Image 1" width="600" height="600">
-  <img src="./R3/T3R43.png" alt="Image 1" width="600" height="600">
+<div align = center class="opaque">
+  <img src="./R3/T3R41.png" alt="Image 1" width=25%>
+  <img src="./R3/T3R42.png" alt="Image 1" width=25%>
+  <img src="./R3/T3R43.png" alt="Image 1" width=25%>
 </div>
 </div>
 
