@@ -14,11 +14,21 @@
 </style>
 	<body>
 		<div>
-  		<h1>Galactic Dynamo Equation</h1>
+      <h1>Abstract</h1>
+      <p>Understanding and solving non-linear galactic dynamo equations play a fundamental role in molding our understanding
+        of the growth and decay of magnetic field in the ever evolving galactic systems. In this work we tried investigating
+        the dynmo equation begining with the induction eaution and observe how the systems evolve over time. We begin with the
+        simple case of diffusions where we see the decay of the fields with the evolution of time. Then we move on to the more
+        sophisticated case of alpha-omega dynamo and look how different dynamo numbers effect our simulation results. We also
+        investigate the effect of different seed fields on the convergence to the optimal solutions.
+        </thead>
+      </p>
+  		<h1>Introduction</h1>
   		<p> In the context of Magnetohydrodynamics we are interested in
   			solving the mean field equation (given below) for various different
   			systems to better understand them.</p>
   		<p>\(\frac{\partial \mathbf{B}}{\partial t} = \nabla \times (\nu \times \mathbf{B}) + \eta \nabla^2 \mathbf{B}\)</p>
+      <p> The above equation aims at modelling large-scale magnetic fields.
   		<p> For the formation of galactic dynamos the toroidal and poloroidal fields couple
   			For getting to the evolution equations and finally solving them numericaly we begin by
   			removing the induction term from the mean field equation getting the diffusion equation.
@@ -34,24 +44,168 @@
       <p>\[ \frac{\partial^2}{\partial z^2} = \frac{\pi^2}{4h^2} \]</p>
     </div>
     <div>
-      <h1> Numerical Solution to the above equations</h1>
-      <p> For solving this equations we use Runge-Kutta 4th Order (RK4) method.
+      <h1> Numerical Methods</h1>
+      <p> For solving the set of equations described in the previous equations we will try to use Runge-Kutta 4th Order (RK4) method.
+        This sort of techniques is used when the differential equations are particulary complicated to solve analytically. Moreover RK4 is much more robust
+        compared to other ODE solving techniques when it comes to convergence of solutions hence it will be the method of our choice.
           The RK4 method is a fourth-order numerical technique used to approximate the solution of initial value problems (IVPs) for ordinary differential equations.
           Consider a general form of a first order ODE is \( \frac{dy}{dx} = f(x, y) \), with an initial condition given by \( y(x_0) = y_0 \). The RK4 method approximates the solution by taking the weighted average of four increments, where each increment is the product of the size of the interval and an estimated slope.</p>
             <p>The formula for the RK4 method is:</p>
             <p>\[ y_{n+1} = y_n + \frac{1}{6}(k_1 + 2k_2 + 2k_3 + k_4) \]</p>
-            <p>where:</p>
+            <p>where:
+                <p>1. <strong>Calculate the slopes:</strong></p>
+                <p>\[ k_1 = hf(x_n, y_n) \]</p>
+                <p>2. <strong>Use the slopes to estimate the midpoint values:</strong></p>
+                <p>\[ k_2 = hf(x_n + \frac{h}{2}, y_n + \frac{k_1}{2}) \]</p>
+                <p>3. <strong>Use these midpoints to get better estimates:</strong></p>
+                <p>\[ k_3 = hf(x_n + \frac{h}{2}, y_n + \frac{k_2}{2}) \]</p>
+                <p>4. <strong>Calculate the final slopes:</strong></p>
+                <p>\[ k_4 = hf(x_n + h, y_n + k_3) \]</p>
+            <p>Now the above schema works well when we have a single variable for which we are trying to find the solution. Given that we are solving for both the magnetic fields in the \(\phi\) and \(r\) directions we
+            will need to slightly modify the above technique to accomodate for the change in the problem statement.</p>
+            <p>Let's say we have the following system of equations:</p>
+            <p> \[ \frac{{dy_1}}{{dt}} = f_1(t, y_1) \] </p>
+            <p> \[ \frac{{dy_2}}{{dt}} = f_2(t, y_2) \] </p>
+            <p>where \( y_1 \) and \( y_2 \) are the variables, \( t \) is the independent variable (time in our case), and \( f_1(t, y_1) \) and \( f_2(t, y_2) \) are the corresponding functions.</p>
+            <p>The RK4 method involves four stages to compute the next values of \( y_1 \) and \( y_2 \):</p>
+            <p>1. <strong>Calculate the slopes:</strong></p>
+            <!-- <pre> -->
+            <p>
+               \[ k_{1,1} = h \cdot f_1(t_n, y_{1,n}) \]
+               \[ k_{1,2} = h \cdot f_2(t_n, y_{2,n}) \]
+            <!-- </pre> --></p>
+
+            <p>2. <strong>Use the slopes to estimate the midpoint values:</strong></p>
+            <p>
+               \[ k_{2,1} = h \cdot f_1(t_n + \frac{h}{2}, y_{1,n} + \frac{k_{1,1}}{2}) \]
+               \[ k_{2,2} = h \cdot f_2(t_n + \frac{h}{2}, y_{2,n} + \frac{k_{1,2}}{2}) \]
+            </p>
+
+            <p>3. <strong>Use these midpoints to get better estimates:</strong></p>
+            <p>
+               \[ k_{3,1} = h \cdot f_1(t_n + \frac{h}{2}, y_{1,n} + \frac{k_{2,1}}{2}) \]
+               \[ k_{3,2} = h \cdot f_2(t_n + \frac{h}{2}, y_{2,n} + \frac{k_{2,2}}{2}) \]
+            </p>
+
+            <p>4. <strong>Calculate the final slopes:</strong></p>
+            <p>
+               \[ k_{4,1} = h \cdot f_1(t_n + h, y_{1,n} + k_{3,1}) \]
+               \[ k_{4,2} = h \cdot f_2(t_n + h, y_{2,n} + k_{3,2}) \]
+            </p>
+
+            <p>5. <strong>Use the weighted average of these slopes to update the values of \( y_1 \) and \( y_2 \):</strong></p>
+            <p>
+               \[ y_{1,n+1} = y_{1,n} + \frac{1}{6}(k_{1,1} + 2k_{2,1} + 2k_{3,1} + k_{4,1}) \]
+               \[ y_{2,n+1} = y_{2,n} + \frac{1}{6}(k_{1,2} + 2k_{2,2} + 2k_{3,2} + k_{4,2}) \]
+            </p>
+
+            <p>Where:
             <ul>
-                <li>\( k_1 = hf(x_n, y_n) \)</li>
-                <li>\( k_2 = hf(x_n + \frac{h}{2}, y_n + \frac{k_1}{2}) \)</li>
-                <li>\( k_3 = hf(x_n + \frac{h}{2}, y_n + \frac{k_2}{2}) \)</li>
-                <li>\( k_4 = hf(x_n + h, y_n + k_3) \)</li>
-            </ul>
-            <p>In this problem statement we have two equations although they are not coupled we will solve all the 4 steps of the algorithm simultaneously to maintain stability. The solution notebook can be found <a href="https://github.com/dc250601/MHD.github.io/blob/main/Solution.ipynb">HERE</a></p>
+               <li> \( t_n \) is the current time step.</li>
+               <li> \( y_{1,n} \) and \( y_{2,n} \) are the current values of \( y_1 \) and \( y_2 \) at time \( t_n \).</li>
+               <li> \( h \) is the step size.</li>
+               <li> \( k_{1,1} \), \( k_{1,2} \), \( k_{2,1} \), \( k_{2,2} \), \( k_{3,1} \), \( k_{3,2} \), \( k_{4,1} \), and \( k_{4,2} \) are slopes at different stages of the calculation.</li>
+            </ul></p>
+
+            <p>These steps are repeated for each time step until we reach the desired end time.</p>
+          </div>
+
+
+          <div>
+            <h1>Methods derivations and Approximations</h1>
+            <p> Taking the no-z approximation considering the glaxay to be a thin disc we can vastly simplify our
+              equations. The derivatives of along the z direction can be essentially replaced by a constant ration.
+              Hence we can decouple and write the equations as
+              $$ \frac{\partial \bar{B}_r}{\partial t} = - \frac{\bar{V}_r}{r} \frac{\partial}{\partial r} (r\bar{B}_r) - \frac{\partial}{\partial z} (\bar{V}_z\bar{B}_r) - \frac{\partial}{\partial z} (\alpha \bar{B}_{\phi}) + \eta_t\left[ \frac{\partial}{\partial r} \left( \frac{1}{r} \frac{\partial}{\partial r} (r\bar{B}_r) \right) + \frac{\partial^2 \bar{B}_r}{\partial z^2} \right] $$
+              $$ \frac{\partial \bar{B}_{\phi}}{\partial t} = -q\Omega \bar{B}_r - \frac{\partial}{\partial r}(\bar{V}_r\bar{B}_{\phi}) - \frac{\partial}{\partial z}(\bar{V}_z\bar{B}_{\phi}) + \frac{\partial}{\partial z}(\alpha \bar{B}_r) + \eta_t\left[ \frac{\partial}{\partial r} \left( \frac{1}{r} \frac{\partial}{\partial r} (r\bar{B}_{\phi})\right) + \frac{\partial^2 \bar{B}_{\phi}}{\partial z^2} \right] $$
+              For the <strong>FIRST TASK</strong> if we neglect all the fields and just consider the diffusion equations we get the following equations
+              $$\frac{\partial B_r}{\partial t} = -\eta_t \left[ \frac{\partial}{\partial r} \left( \frac{1}{r} \frac{\partial r B_r}{\partial r} \right) + \frac{\partial^2 B_r}{\partial z^2} \right]$$
+              \[ \frac{\partial B_\phi}{\partial t} = \eta_t \left[ \frac{\partial}{\partial r} \left( \frac{1}{r} \frac{\partial (r B_\phi)}{\partial r} \right) + \frac{\partial^2 B_\phi}{\partial z^2} \right] \]</p>
+              <p>The derivatives with respect to \( z \) are then estimated as \(\left|\frac{{\partial^2}}{{\partial z^2}}\right| \to \frac{\pi^2}{4h^2}\)</p>
+            <p> For the second task we look into the alpha-omega dynamo. The alpha term turns the toroidal field into the poloidal field in cylindrical geomtry, and the omega term turns the
+              poloidal field into the toroidal field.</p>
+              <p>These factors interact with the diffusive terms, which leads to a specific behavior determined by parameters such as \( \alpha \) and \( \Omega \) relative to \( \eta_t \), the turbulent magnetic diffusivity. To quantify this interplay, we introduce a parameter known as the dynamo number, defined as:</p>
+              <p>\[ D = \frac{\alpha q \Omega h^3}{\eta_t^2} \]</p>
+              <p>where \( q = -r\Omega \frac{d\Omega}{dr} \). Here, \( h \) represents the scale height along the vertical direction \( z \) at each point in the galaxy. This dynamo number helps us understand whether the magnetic fields will grow, decay, or reach a steady state.</p>
+              <p>For a typical dynamo number, often referred to as the critical dynamo number, we observe a saturating solution. Only when the dynamo number exceeds this critical value do we observe a growing solution.</p>
+              <p>We choose functional forms for \( \Omega \) and \( \alpha \) as follows:</p>
+              <p>\[ \Omega = \Omega_0 \sqrt{1 + \left(\frac{r}{R_0}\right)^2} \]</p>
+              <p>Here, \( R_0 \) is held constant for analysis purposes. For \( \alpha \), we use the expression:</p>
+              <p>\[ \alpha = \tau^2 v_{rms}^2 \frac{\Omega}{h} \]</p>
+              <p>The dynamics of the system depend on the intricate interplay between these parameters, determining the resulting solutions.</p>
+          </div>
+          <div>
+            <h1>Results</h1>
+            <h2>Task 1</h2>
+            <div align = center>
+            <img src="./T1R11.png" alt="Image 1" width="600" height="600">
+            <img src="./T1R12.png" alt="Image 1" width="600" height="600">
+          </div>
+          <div align = center>
+          <img src="./T1R21.png" alt="Image 1" width="600" height="600">
+          <img src="./T1R22.png" alt="Image 1" width="600" height="600">
+        </div>
+        <p> Looking at the above plots it is clear that the fields are indeed decaying showing the effect of diffusion equation</p>
+        <p>The solution notebook can be found <a href="https://github.com/dc250601/MHD.github.io/blob/main/Solution.ipynb">HERE</a></p>
+
+        <h2> Task 2</h2>
+        <p><strong>CASE1<strong></p>
+        <div align = center>
+        <img src="./R2/T2R11.png" alt="Image 1" width="600" height="600">
+        <img src="./R2/T2R12.png" alt="Image 1" width="600" height="600">
+        <img src="./R2/T2R13.png" alt="Image 1" width="600" height="600">
+        <img src="./R2/T2R14.png" alt="Image 1" width="600" height="600">
+        <img src="./R2/T2R15.png" alt="Image 1" width="1200" height="600">
+      </div>
+      </br></br>
+      <p><strong>CASE2<strong></p>
+      <div align = center>
+      <img src="./R2/T2R21.png" alt="Image 1" width="600" height="600">
+      <img src="./R2/T2R22.png" alt="Image 1" width="600" height="600">
+      <img src="./R2/T2R23.png" alt="Image 1" width="600" height="600">
+      <img src="./R2/T2R25.png" alt="Image 1" width="600" height="600">
+      <img src="./R2/T2R24.png" alt="Image 1" width="1200" height="600">
+    </div>
+    </br></br>
+    <p><strong>CASE3<strong></p>
+
+    <div align = center>
+    <img src="./R2/T2R31.png" alt="Image 1" width="600" height="600">
+    <img src="./R2/T2R32.png" alt="Image 1" width="600" height="600">
+    <img src="./R2/T2R33.png" alt="Image 1" width="600" height="600">
+    <img src="./R2/T2R34.png" alt="Image 1" width="600" height="600">
+    <img src="./R2/T2R35.png" alt="Image 1" width="1200" height="600">
+  </div>
+
+<h2> Task 3</h2>
+<p>For Task 3 we will look at different seed field conditions while slowly increasing their complexity to see how long it
+takes for them to converge to a solution. In each case we begin with a seed field and the left most graph is the initial condition
+as we move towards the right we keep increasing the number of steps.</p>
+<div align = center>
+  <img src="./R3/T3R11.png" alt="Image 1" width="600" height="600">
+  <img src="./R3/T3R12.png" alt="Image 1" width="600" height="600">
+</div>
+</br></br>
+<div align = center>
+  <img src="./R3/T3R21.png" alt="Image 1" width="600" height="600">
+  <img src="./R3/T3R22.png" alt="Image 1" width="600" height="600">
+</div>
+</br></br>
+<div align = center>
+  <img src="./R3/T3R31.jpg" alt="Image 1" width="600" height="600">
+  <img src="./R3/T3R32.png" alt="Image 1" width="600" height="600">
+  <img src="./R3/T3R33.png" alt="Image 1" width="600" height="600">
+</div>
+</br></br>
+<div align = center>
+  <img src="./R3/T3R41.png" alt="Image 1" width="600" height="600">
+  <img src="./R3/T3R42.png" alt="Image 1" width="600" height="600">
+  <img src="./R3/T3R43.png" alt="Image 1" width="600" height="600">
+</div>
+        </div>
+
+
             <p>The solution for part 2 notebook can be found <a href="https://github.com/dc250601/MHD.github.io/blob/main/Solution2.ipynb">HERE</a></p>
 
-
-
-	</div>
 	</body>
 </html>
